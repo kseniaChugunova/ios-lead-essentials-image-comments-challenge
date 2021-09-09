@@ -103,6 +103,7 @@
 		08F8822D236499B200CAEE16 /* FeedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8822C236499B200CAEE16 /* FeedCache.swift */; };
 		FA0DC41426E9CEF900677C6D /* ImageCommentsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC41326E9CEF900677C6D /* ImageCommentsMapperTests.swift */; };
 		FA0DC41626E9D08B00677C6D /* ImageCommentsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC41526E9D08B00677C6D /* ImageCommentsMapper.swift */; };
+		FA0DC41826E9D2F100677C6D /* ImageComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC41726E9D2F100677C6D /* ImageComment.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -228,6 +229,7 @@
 		08FC5AA922D5F47900148E12 /* FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoader.swift; sourceTree = "<group>"; };
 		FA0DC41326E9CEF900677C6D /* ImageCommentsMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageCommentsMapperTests.swift; path = ../../../../EssentialApp/ImageCommentsMapperTests.swift; sourceTree = "<group>"; };
 		FA0DC41526E9D08B00677C6D /* ImageCommentsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapper.swift; sourceTree = "<group>"; };
+		FA0DC41726E9D2F100677C6D /* ImageComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComment.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -431,14 +433,6 @@
 				08285AF2228BFAFF000A8987 /* FeedStore.xcdatamodeld */,
 			);
 			path = CoreData;
-			sourceTree = "<group>";
-		};
-		08346CF024F93EA300A9F17C /* Domain */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Domain;
-			path = ../../../Domain;
 			sourceTree = "<group>";
 		};
 		08346CF324F942BC00A9F17C /* API */ = {
@@ -769,7 +763,7 @@
 		FA0DC40D26E9CD8200677C6D /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				08346CF024F93EA300A9F17C /* Domain */,
+				FA0DC41726E9D2F100677C6D /* ImageComment.swift */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -1047,6 +1041,7 @@
 				08E5941522523FCC00E2D213 /* FeedCachePolicy.swift in Sources */,
 				08285AF4228BFAFF000A8987 /* FeedStore.xcdatamodeld in Sources */,
 				08604505233E316F005ECD22 /* CoreDataFeedStore+FeedStore.swift in Sources */,
+				FA0DC41826E9D2F100677C6D /* ImageComment.swift in Sources */,
 				0886893A221DAA34007BC3E7 /* LocalFeedImage.swift in Sources */,
 				087148B9232BEBD800D6BE1A /* FeedViewModel.swift in Sources */,
 				089C40DE22170F2300DE552E /* FeedStore.swift in Sources */,
