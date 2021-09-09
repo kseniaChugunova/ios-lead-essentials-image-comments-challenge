@@ -33,5 +33,45 @@ class ImageCommentsMapperTests: XCTestCase {
 
         XCTAssertEqual(result, [])
     }
+    
+    func test_map_deliversItemsOn200HTTPResponseWithJSONItems() throws {
+     
+        let item1 = makeItem(
+            id: UUID(),
+            message: "a message",
+            createdAt: Date(),
+            username: "a username")
+        
+        let item2 = makeItem(
+            id: UUID(),
+            message: "another message",
+            createdAt: Date(),
+            username: "a long username")
 
+        let json = makeItemsJSON([item1.json, item2.json])
+
+        let result = try ImageCommentsMapper.map(json, from: HTTPURLResponse(statusCode: 200))
+
+        XCTAssertEqual(result, [item1.model, item2.model])
+    }
+    
+    // MARK: - Helpers
+
+    private func makeItem(id: UUID, message: String, createdAt: Date, username: String) -> (model: ImageComment, json: [String: Any]) {
+        let dateFormatter = ISO8601DateFormatter()
+        let stringDate = dateFormatter.string(from: createdAt)
+        
+        let item = ImageComment(id: id,
+                                message: message,
+                                createdAt: dateFormatter.date(from: stringDate)!,
+                                authorUsername: username)
+        let json = [
+            "id": id.uuidString,
+            "message": message,
+            "createdAt": stringDate,
+            "author": ["username": username]
+        ].compactMapValues { $0 }
+
+        return (item, json)
+    }
 }

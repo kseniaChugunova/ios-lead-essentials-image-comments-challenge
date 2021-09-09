@@ -11,7 +11,7 @@ public final class ImageCommentsMapper {
 		private struct RemoteImageCommentItem: Decodable {
 			let id: UUID
 			let message: String
-			let created: Date
+			let createdAt: Date
 			let author: Author
 
 			struct Author: Decodable {
@@ -20,7 +20,7 @@ public final class ImageCommentsMapper {
 		}
 
 		var images: [ImageComment] {
-			items.map { ImageComment(id: $0.id, message: $0.message, createdAt: $0.created, authorUsername: $0.author.username) }
+			items.map { ImageComment(id: $0.id, message: $0.message, createdAt: $0.createdAt, authorUsername: $0.author.username) }
 		}
 	}
 
@@ -34,10 +34,13 @@ public final class ImageCommentsMapper {
 			throw Error.invalidResponse
 		}
 
-		guard let _ = try? JSONDecoder().decode(Root.self, from: data) else {
-			throw Error.invalidData
+		let decoder = JSONDecoder()
+		decoder.dateDecodingStrategy = .iso8601
+
+		guard let root = try? decoder.decode(Root.self, from: data) else {
+			throw Error.invalidResponse
 		}
 
-		return []
+		return root.images
 	}
 }
