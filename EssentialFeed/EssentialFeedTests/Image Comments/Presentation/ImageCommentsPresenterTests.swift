@@ -32,7 +32,7 @@ class ImageCommentsPresenterTests: XCTestCase {
 }
 
 func uniqueImageComment() -> ImageComment {
-	return ImageComment(id: UUID(), message: "a message", createdAt: Date(), authorUsername: "a username")
+	return ImageComment(id: UUID(), message: "a message", createdAt: Date().adding(days: -5), authorUsername: "a username")
 }
 
 func uniqueImageComments() -> [ImageComment] {
