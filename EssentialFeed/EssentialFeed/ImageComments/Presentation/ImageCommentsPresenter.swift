@@ -5,6 +5,14 @@
 import Foundation
 
 public final class ImageCommentsPresenter {
+	public static var title: String {
+		NSLocalizedString(
+			"COMMENTS_VIEW_TITLE",
+			tableName: "ImageComments",
+			bundle: Bundle(for: ImageCommentsPresenter.self),
+			comment: "Title for the comments view")
+	}
+
 	public static func map(_ comments: [ImageComment]) -> ImageCommentsViewModel {
 		ImageCommentsViewModel(comments: comments)
 	}
