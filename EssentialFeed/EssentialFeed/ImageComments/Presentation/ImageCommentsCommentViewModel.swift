@@ -9,7 +9,14 @@ public struct ImageCommentsCommentViewModel {
 	public let username: String?
 	public let dateText: String?
 
-	init(comment: ImageComment) {
+	public init(text: String?, username: String?, date: Date) {
+		self.text = text
+		self.username = username
+		let dateFormatter = RelativeDateTimeFormatter()
+		self.dateText = dateFormatter.localizedString(for: date, relativeTo: Date())
+	}
+
+	public init(comment: ImageComment) {
 		self.text = comment.message
 		self.username = comment.author.username
 

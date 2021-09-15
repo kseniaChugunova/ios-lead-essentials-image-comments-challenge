@@ -115,6 +115,11 @@
 		FAB8880026F1B58000A4855E /* ImageCommentsSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB887FF26F1B58000A4855E /* ImageCommentsSnapshotTests.swift */; };
 		FAB8880426F1B5BE00A4855E /* ImageCommentCellController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8880326F1B5BE00A4855E /* ImageCommentCellController.swift.swift */; };
 		FAB8880726F1B5E000A4855E /* ImageComments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB8880626F1B5E000A4855E /* ImageComments.storyboard */; };
+		FAB8880926F1BA6000A4855E /* ImageCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8880826F1BA6000A4855E /* ImageCommentCell.swift */; };
+		FAB8880B26F1C2C200A4855E /* Date+Adding.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8880A26F1C2C200A4855E /* Date+Adding.swift */; };
+		FAB8881026F1C44900A4855E /* COMMENTS_WITH_CONTENT_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB8880D26F1C44900A4855E /* COMMENTS_WITH_CONTENT_dark.png */; };
+		FAB8881126F1C44900A4855E /* COMMENTS_WITH_CONTENT_light.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB8880E26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light.png */; };
+		FAB8881226F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB8880F26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -254,6 +259,11 @@
 		FAB887FF26F1B58000A4855E /* ImageCommentsSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsSnapshotTests.swift; sourceTree = "<group>"; };
 		FAB8880326F1B5BE00A4855E /* ImageCommentCellController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentCellController.swift.swift; sourceTree = "<group>"; };
 		FAB8880626F1B5E000A4855E /* ImageComments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageComments.storyboard; sourceTree = "<group>"; };
+		FAB8880826F1BA6000A4855E /* ImageCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentCell.swift; sourceTree = "<group>"; };
+		FAB8880A26F1C2C200A4855E /* Date+Adding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Adding.swift"; sourceTree = "<group>"; };
+		FAB8880D26F1C44900A4855E /* COMMENTS_WITH_CONTENT_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = COMMENTS_WITH_CONTENT_dark.png; sourceTree = "<group>"; };
+		FAB8880E26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = COMMENTS_WITH_CONTENT_light.png; sourceTree = "<group>"; };
+		FAB8880F26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -812,7 +822,9 @@
 		FAB8880126F1B59D00A4855E /* Image Comments UI */ = {
 			isa = PBXGroup;
 			children = (
+				FAB8880C26F1C44900A4855E /* snapshots */,
 				FAB887FF26F1B58000A4855E /* ImageCommentsSnapshotTests.swift */,
+				FAB8880A26F1C2C200A4855E /* Date+Adding.swift */,
 			);
 			path = "Image Comments UI";
 			sourceTree = "<group>";
@@ -829,8 +841,19 @@
 			isa = PBXGroup;
 			children = (
 				FAB8880626F1B5E000A4855E /* ImageComments.storyboard */,
+				FAB8880826F1BA6000A4855E /* ImageCommentCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FAB8880C26F1C44900A4855E /* snapshots */ = {
+			isa = PBXGroup;
+			children = (
+				FAB8880D26F1C44900A4855E /* COMMENTS_WITH_CONTENT_dark.png */,
+				FAB8880E26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light.png */,
+				FAB8880F26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png */,
+			);
+			path = snapshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1013,8 +1036,11 @@
 				084BF973251B9A1000E57FC8 /* FEED_WITH_FAILED_IMAGE_LOADING_light.png in Resources */,
 				084BF975251B9A1000E57FC8 /* EMPTY_LIST_dark.png in Resources */,
 				084BF971251B9A1000E57FC8 /* EMPTY_LIST_light.png in Resources */,
+				FAB8881226F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png in Resources */,
 				084BF96E251B9A1000E57FC8 /* LIST_WITH_ERROR_MESSAGE_dark.png in Resources */,
+				FAB8881126F1C44900A4855E /* COMMENTS_WITH_CONTENT_light.png in Resources */,
 				084BF970251B9A1000E57FC8 /* FEED_WITH_CONTENT_dark.png in Resources */,
+				FAB8881026F1C44900A4855E /* COMMENTS_WITH_CONTENT_dark.png in Resources */,
 				084BF972251B9A1000E57FC8 /* FEED_WITH_CONTENT_light.png in Resources */,
 				084BF974251B9A1000E57FC8 /* LIST_WITH_ERROR_MESSAGE_light.png in Resources */,
 				084BF96F251B9A1000E57FC8 /* FEED_WITH_FAILED_IMAGE_LOADING_dark.png in Resources */,
@@ -1156,6 +1182,7 @@
 				086AEFBE23A7E75400EE8933 /* UITableView+HeaderSizing.swift in Sources */,
 				08A3F2B2232AA1C200127C15 /* ErrorView.swift in Sources */,
 				08A3F2BB232BA64700127C15 /* UIRefreshControl+Helpers.swift in Sources */,
+				FAB8880926F1BA6000A4855E /* ImageCommentCell.swift in Sources */,
 				0865FA86252269B000416D62 /* UIView+Container.swift in Sources */,
 				08605B9F251E352F0011D4D3 /* CellController.swift in Sources */,
 				08B5EB5022CE328100FE8683 /* UIView+Shimmering.swift in Sources */,
@@ -1176,6 +1203,7 @@
 				08BB7EA922C138AC00F8B83C /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				080D8BD3251E261F00602717 /* ListSnapshotTests.swift in Sources */,
 				086AEFB923A7DFA400EE8933 /* FeedSnapshotTests.swift in Sources */,
+				FAB8880B26F1C2C200A4855E /* Date+Adding.swift in Sources */,
 				0800314923B6909A00720217 /* XCTestCase+Snapshot.swift in Sources */,
 				0800314723B68FAB00720217 /* UIViewController+Snapshot.swift in Sources */,
 				086AEFBC23A7E5C300EE8933 /* UIImage+TestHelpers.swift in Sources */,
