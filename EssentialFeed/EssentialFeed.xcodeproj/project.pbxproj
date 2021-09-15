@@ -112,6 +112,9 @@
 		FAB887EE26EC7C8900A4855E /* ImageCommentsCommentPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB887ED26EC7C8900A4855E /* ImageCommentsCommentPresenterTests.swift */; };
 		FAB887F026ECA10900A4855E /* ImageCommentsLocalizationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB887EF26ECA10900A4855E /* ImageCommentsLocalizationTests.swift */; };
 		FAB887F126ECA16F00A4855E /* ImageComments.strings in Resources */ = {isa = PBXBuildFile; fileRef = FAB887F326ECA16F00A4855E /* ImageComments.strings */; };
+		FAB8880026F1B58000A4855E /* ImageCommentsSnapshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB887FF26F1B58000A4855E /* ImageCommentsSnapshotTests.swift */; };
+		FAB8880426F1B5BE00A4855E /* ImageCommentCellController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB8880326F1B5BE00A4855E /* ImageCommentCellController.swift.swift */; };
+		FAB8880726F1B5E000A4855E /* ImageComments.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FAB8880626F1B5E000A4855E /* ImageComments.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +251,9 @@
 		FAB887F226ECA16F00A4855E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ImageComments.strings; sourceTree = "<group>"; };
 		FAB887F426ECA17300A4855E /* el */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = el; path = el.lproj/ImageComments.strings; sourceTree = "<group>"; };
 		FAB887F526ECA17600A4855E /* pt-BR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "pt-BR"; path = "pt-BR.lproj/ImageComments.strings"; sourceTree = "<group>"; };
+		FAB887FF26F1B58000A4855E /* ImageCommentsSnapshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsSnapshotTests.swift; sourceTree = "<group>"; };
+		FAB8880326F1B5BE00A4855E /* ImageCommentCellController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentCellController.swift.swift; sourceTree = "<group>"; };
+		FAB8880626F1B5E000A4855E /* ImageComments.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ImageComments.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,36 +348,6 @@
 				08605BA6251E3F3F0011D4D3 /* LIST_WITH_ERROR_MESSAGE_light_extraExtraExtraLarge.png */,
 			);
 			path = snapshots;
-			sourceTree = "<group>";
-		};
-		080D8BF3251E278E00602717 /* Image Comments UI */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Image Comments UI";
-			sourceTree = "<group>";
-		};
-		080D8C02251E28A400602717 /* Image Comments UI */ = {
-			isa = PBXGroup;
-			children = (
-				080D8C03251E28AE00602717 /* Controllers */,
-				080D8C12251E292F00602717 /* Views */,
-			);
-			path = "Image Comments UI";
-			sourceTree = "<group>";
-		};
-		080D8C03251E28AE00602717 /* Controllers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Controllers;
-			sourceTree = "<group>";
-		};
-		080D8C12251E292F00602717 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		080EDEE721B6DA7E00813479 = {
@@ -698,10 +674,10 @@
 		08D917A122B92A5D003BC31B /* EssentialFeediOS */ = {
 			isa = PBXGroup;
 			children = (
+				FAB887FE26F1B55C00A4855E /* ImageComments UI */,
 				08D917A322B92A5D003BC31B /* Info.plist */,
 				080D8BC7251E251900602717 /* Shared UI */,
 				08FC5AA622D5F33000148E12 /* Feed UI */,
-				080D8C02251E28A400602717 /* Image Comments UI */,
 			);
 			path = EssentialFeediOS;
 			sourceTree = "<group>";
@@ -709,11 +685,11 @@
 		08D917AC22B92A5D003BC31B /* EssentialFeediOSTests */ = {
 			isa = PBXGroup;
 			children = (
+				FAB8880126F1B59D00A4855E /* Image Comments UI */,
 				08D917AF22B92A5D003BC31B /* Info.plist */,
 				086AEFBA23A7E5B100EE8933 /* Helpers */,
 				080D8BCB251E25A400602717 /* Shared UI */,
 				084BF964251B99F600E57FC8 /* Feed UI */,
-				080D8BF3251E278E00602717 /* Image Comments UI */,
 			);
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
@@ -822,6 +798,39 @@
 				FAB887DE26EC6DDC00A4855E /* ImageCommentsMapperTests.swift */,
 			);
 			path = API;
+			sourceTree = "<group>";
+		};
+		FAB887FE26F1B55C00A4855E /* ImageComments UI */ = {
+			isa = PBXGroup;
+			children = (
+				FAB8880526F1B5D100A4855E /* Views */,
+				FAB8880226F1B5B200A4855E /* Controllers */,
+			);
+			path = "ImageComments UI";
+			sourceTree = "<group>";
+		};
+		FAB8880126F1B59D00A4855E /* Image Comments UI */ = {
+			isa = PBXGroup;
+			children = (
+				FAB887FF26F1B58000A4855E /* ImageCommentsSnapshotTests.swift */,
+			);
+			path = "Image Comments UI";
+			sourceTree = "<group>";
+		};
+		FAB8880226F1B5B200A4855E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FAB8880326F1B5BE00A4855E /* ImageCommentCellController.swift.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		FAB8880526F1B5D100A4855E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FAB8880626F1B5E000A4855E /* ImageComments.storyboard */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -992,6 +1001,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0822D0F123056FEB004B3345 /* Feed.storyboard in Resources */,
+				FAB8880726F1B5E000A4855E /* ImageComments.storyboard in Resources */,
 				0822D0F3230570F3004B3345 /* Feed.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1153,6 +1163,7 @@
 				08BB7EAB22C1425100F8B83C /* ListViewController.swift in Sources */,
 				0822D0F7230581D2004B3345 /* UIImageView+Animations.swift in Sources */,
 				08B5EB4E22CE244400FE8683 /* FeedImageCell.swift in Sources */,
+				FAB8880426F1B5BE00A4855E /* ImageCommentCellController.swift.swift in Sources */,
 				08EFE6BD22D6384100DA417A /* FeedImageCellController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1161,6 +1172,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAB8880026F1B58000A4855E /* ImageCommentsSnapshotTests.swift in Sources */,
 				08BB7EA922C138AC00F8B83C /* XCTestCase+MemoryLeakTracking.swift in Sources */,
 				080D8BD3251E261F00602717 /* ListSnapshotTests.swift in Sources */,
 				086AEFB923A7DFA400EE8933 /* FeedSnapshotTests.swift in Sources */,
