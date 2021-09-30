@@ -6,7 +6,7 @@ import Foundation
 
 public struct ImageComment: Hashable {
 	public struct Author: Hashable {
-		let username: String
+		public let username: String
 	}
 
 	public let id: UUID

@@ -10,8 +10,8 @@ extension FeedUIIntegrationTests {
 	func assertThat(_ sut: ListViewController, isRendering feed: [FeedImage], file: StaticString = #filePath, line: UInt = #line) {
 		sut.view.enforceLayoutCycle()
 
-		guard sut.numberOfRenderedFeedImageViews() == feed.count else {
-			return XCTFail("Expected \(feed.count) images, got \(sut.numberOfRenderedFeedImageViews()) instead.", file: file, line: line)
+		guard sut.numberOfRenderedCellViews() == feed.count else {
+			return XCTFail("Expected \(feed.count) images, got \(sut.numberOfRenderedCellViews()) instead.", file: file, line: line)
 		}
 
 		feed.enumerated().forEach { index, image in
@@ -22,7 +22,7 @@ extension FeedUIIntegrationTests {
 	}
 
 	func assertThat(_ sut: ListViewController, hasViewConfiguredFor image: FeedImage, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
-		let view = sut.feedImageView(at: index)
+		let view = sut.cellView(at: index)
 
 		guard let cell = view as? FeedImageCell else {
 			return XCTFail("Expected \(FeedImageCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
