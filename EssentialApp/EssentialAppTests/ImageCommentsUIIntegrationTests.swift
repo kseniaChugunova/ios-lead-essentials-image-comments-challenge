@@ -62,6 +62,20 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		XCTAssertEqual(sut.errorMessage, nil)
 	}
 
+	func test_loadCommentsCompletion_rendersSuccessfullyLoadedEmptyScreenAfterNonEmptyScreen() {
+		let comment0 = makeComment(message: "a message", createdAt: Date(), authorUsername: "a username")
+		let comment1 = makeComment(message: "another message", createdAt: Date(), authorUsername: "a long username")
+		let (sut, loader) = makeSUT()
+
+		sut.loadViewIfNeeded()
+		loader.completeCommentsLoading(with: [comment0, comment1], at: 0)
+		assertThat(sut, isRendering: [comment0, comment1])
+
+		sut.simulateUserInitiatedReload()
+		loader.completeCommentsLoading(with: [], at: 1)
+		assertThat(sut, isRendering: [])
+	}
+
 	func test_loadCommentsCompletion_doesNotAlterCurrentRenderingStateOnError() {
 		let comment0 = makeComment(message: "a message", createdAt: Date(), authorUsername: "a username")
 		let (sut, loader) = makeSUT()
