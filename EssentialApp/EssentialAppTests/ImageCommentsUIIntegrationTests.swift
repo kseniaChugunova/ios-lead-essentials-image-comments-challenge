@@ -61,6 +61,19 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		assertThat(sut, isRendering: [comment0])
 	}
 
+	func test_tapOnErrorView_hidesErrorMessage() {
+		let (sut, loader) = makeSUT()
+
+		sut.loadViewIfNeeded()
+		XCTAssertEqual(sut.errorMessage, nil)
+
+		loader.completeCommentsLoadingWithError(at: 0)
+		XCTAssertEqual(sut.errorMessage, loadError)
+
+		sut.simulateErrorViewTap()
+		XCTAssertEqual(sut.errorMessage, nil)
+	}
+
 	func test_loadingIndicator_isVisibleWhileLoading() {
 		let (sut, loader) = makeSUT()
 
