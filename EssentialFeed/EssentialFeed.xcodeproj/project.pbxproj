@@ -103,6 +103,8 @@
 		08F8822D236499B200CAEE16 /* FeedCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08F8822C236499B200CAEE16 /* FeedCache.swift */; };
 		FA0DC41626E9D08B00677C6D /* ImageCommentsMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC41526E9D08B00677C6D /* ImageCommentsMapper.swift */; };
 		FA0DC41826E9D2F100677C6D /* ImageComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0DC41726E9D2F100677C6D /* ImageComment.swift */; };
+		FAAAF85C270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_light.png in Resources */ = {isa = PBXBuildFile; fileRef = FAAAF85A270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_light.png */; };
+		FAAAF85D270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = FAAAF85B270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_dark.png */; };
 		FAB887DF26EC6DDC00A4855E /* ImageCommentsMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB887DE26EC6DDC00A4855E /* ImageCommentsMapperTests.swift */; };
 		FAB887E126EC6E6400A4855E /* ImageCommentsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB887E026EC6E6400A4855E /* ImageCommentsPresenterTests.swift */; };
 		FAB887E726EC754900A4855E /* ImageCommentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAB887E626EC754900A4855E /* ImageCommentsViewModel.swift */; };
@@ -246,6 +248,8 @@
 		08FC5AA922D5F47900148E12 /* FeedImageDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedImageDataLoader.swift; sourceTree = "<group>"; };
 		FA0DC41526E9D08B00677C6D /* ImageCommentsMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapper.swift; sourceTree = "<group>"; };
 		FA0DC41726E9D2F100677C6D /* ImageComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageComment.swift; sourceTree = "<group>"; };
+		FAAAF85A270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = COMMENTS_WITH_FAILED_LOADING_light.png; sourceTree = "<group>"; };
+		FAAAF85B270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = COMMENTS_WITH_FAILED_LOADING_dark.png; sourceTree = "<group>"; };
 		FAB887DE26EC6DDC00A4855E /* ImageCommentsMapperTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCommentsMapperTests.swift; sourceTree = "<group>"; };
 		FAB887E026EC6E6400A4855E /* ImageCommentsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsPresenterTests.swift; sourceTree = "<group>"; };
 		FAB887E226EC6E8500A4855E /* ImageCommentsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsPresenter.swift; sourceTree = "<group>"; };
@@ -852,6 +856,8 @@
 		FAB8880C26F1C44900A4855E /* snapshots */ = {
 			isa = PBXGroup;
 			children = (
+				FAAAF85B270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_dark.png */,
+				FAAAF85A270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_light.png */,
 				FAB8880D26F1C44900A4855E /* COMMENTS_WITH_CONTENT_dark.png */,
 				FAB8880E26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light.png */,
 				FAB8880F26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png */,
@@ -1040,9 +1046,11 @@
 				084BF975251B9A1000E57FC8 /* EMPTY_LIST_dark.png in Resources */,
 				084BF971251B9A1000E57FC8 /* EMPTY_LIST_light.png in Resources */,
 				FAB8881226F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png in Resources */,
+				FAAAF85C270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_light.png in Resources */,
 				084BF96E251B9A1000E57FC8 /* LIST_WITH_ERROR_MESSAGE_dark.png in Resources */,
 				FAB8881126F1C44900A4855E /* COMMENTS_WITH_CONTENT_light.png in Resources */,
 				084BF970251B9A1000E57FC8 /* FEED_WITH_CONTENT_dark.png in Resources */,
+				FAAAF85D270B034600CA8F7F /* COMMENTS_WITH_FAILED_LOADING_dark.png in Resources */,
 				FAB8881026F1C44900A4855E /* COMMENTS_WITH_CONTENT_dark.png in Resources */,
 				084BF972251B9A1000E57FC8 /* FEED_WITH_CONTENT_light.png in Resources */,
 				084BF974251B9A1000E57FC8 /* LIST_WITH_ERROR_MESSAGE_light.png in Resources */,

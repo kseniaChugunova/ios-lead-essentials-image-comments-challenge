@@ -17,6 +17,15 @@ class ImageCommentsSnapshotTests: XCTestCase {
 		assert(snapshot: sut.snapshot(for: .iPhone8(style: .light, contentSize: .extraExtraExtraLarge)), named: "COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge")
 	}
 
+	func test_commentsWithFailedImageLoading() {
+		let sut = makeSUT()
+
+		sut.display(ResourceErrorViewModel(message: "any"))
+
+		assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "COMMENTS_WITH_FAILED_LOADING_light")
+		assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "COMMENTS_WITH_FAILED_LOADING_dark")
+	}
+
 	// MARK: - Helpers
 
 	private func makeSUT() -> ListViewController {

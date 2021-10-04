@@ -67,7 +67,7 @@ class ImageCommentsMapperTests: XCTestCase {
 		let json = [
 			"id": id.uuidString,
 			"message": message,
-			"createdAt": stringDate,
+			"created_at": stringDate,
 			"author": ["username": username]
 		].compactMapValues { $0 }
 
