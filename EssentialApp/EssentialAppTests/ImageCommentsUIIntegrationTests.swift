@@ -35,7 +35,7 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		assertThat(sut, isRendering: [comment0, comment1, comment2, comment3])
 	}
 
-	func test_loadCompletion_rendersErrorMessageOnErrorUntilNextReload() {
+	func test_loadCommentsCompletion_rendersErrorMessageOnErrorUntilNextReload() {
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
@@ -46,6 +46,19 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 
 		sut.simulateUserInitiatedReload()
 		XCTAssertEqual(sut.errorMessage, nil)
+	}
+
+	func test_loadCommentsCompletion_doesNotAlterCurrentRenderingStateOnError() {
+		let comment0 = makeComment(message: "a message", createdAt: Date(), authorUsername: "a username")
+		let (sut, loader) = makeSUT()
+
+		sut.loadViewIfNeeded()
+		loader.completeCommentsLoading(with: [comment0], at: 0)
+		assertThat(sut, isRendering: [comment0])
+
+		sut.simulateUserInitiatedReload()
+		loader.completeCommentsLoadingWithError(at: 1)
+		assertThat(sut, isRendering: [comment0])
 	}
 
 	// MARK: - Helpers
