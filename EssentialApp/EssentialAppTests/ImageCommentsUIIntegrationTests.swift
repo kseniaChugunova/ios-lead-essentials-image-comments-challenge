@@ -17,6 +17,20 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		XCTAssertEqual(sut.title, imageCommentsTitle)
 	}
 
+	func test_loadCommentsAction_requestDataFromLoader() {
+		let (sut, loader) = makeSUT()
+		XCTAssertEqual(loader.loadCommentsCallCount, 0, "Expected no loading requests before view is loaded")
+
+		sut.loadViewIfNeeded()
+		XCTAssertEqual(loader.loadCommentsCallCount, 1, "Expected a loading request once view is loaded")
+
+		sut.simulateUserInitiatedReload()
+		XCTAssertEqual(loader.loadCommentsCallCount, 2, "Expected another loading request once user initiates a reload")
+
+		sut.simulateUserInitiatedReload()
+		XCTAssertEqual(loader.loadCommentsCallCount, 3, "Expected yet another loading request once user initiates another reload")
+	}
+
 	func test_loadCommentsCompletion_rendersSuccessfullyLoadedComments() {
 		let comment0 = makeComment(message: "a message", createdAt: Date(), authorUsername: "a username")
 		let comment1 = makeComment(message: "another message", createdAt: Date(), authorUsername: "a long username")
@@ -117,13 +131,17 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 			}
 		}
 
+		var loadCommentsCallCount: Int {
+			return commentsRequests.count
+		}
+
+		private var commentsRequests = [PassthroughSubject<[ImageComment], Error>]()
+
 		func loadPublisher() -> AnyPublisher<[ImageComment], Error> {
 			let publisher = PassthroughSubject<[ImageComment], Error>()
 			commentsRequests.append(publisher)
 			return publisher.eraseToAnyPublisher()
 		}
-
-		private var commentsRequests = [PassthroughSubject<[ImageComment], Error>]()
 
 		func loadImageCommentData(from url: URL, completion: @escaping (ImageCommentsDataLoader.Result) -> Void) -> ImageCommentsDataLoaderTask {
 			return TaskSpy(cancelCallback: {})
