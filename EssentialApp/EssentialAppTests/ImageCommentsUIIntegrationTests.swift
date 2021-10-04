@@ -118,6 +118,18 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		XCTAssertFalse(sut.isShowingLoadingIndicator, "Expected no loading indicator once user initiated loading completes with error")
 	}
 
+	func test_loadCommentsCompletion_dispatchesFromBackgroundToMainThread() {
+		let (sut, loader) = makeSUT()
+		sut.loadViewIfNeeded()
+
+		let exp = expectation(description: "Wait for background queue")
+		DispatchQueue.global().async {
+			loader.completeCommentsLoading(at: 0)
+			exp.fulfill()
+		}
+		wait(for: [exp], timeout: 1.0)
+	}
+
 	// MARK: - Helpers
 
 	private func makeSUT(
