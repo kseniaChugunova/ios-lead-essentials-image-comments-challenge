@@ -56,7 +56,20 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 	private func showComments(for image: FeedImage) {
-		fatalError("Must be implemented")
+		let commentsLoader = makeRemoteCommentsLoader(imageId: image.id.uuidString)
+		let commentsVC = CommentsUIComposer.imageCommentsComposedWith(commentsLoader: commentsLoader)
+		navigationController.pushViewController(commentsVC, animated: true)
+	}
+
+	private func makeRemoteCommentsLoader(imageId: String) -> () -> AnyPublisher<[ImageComment], Error> {
+		let url = FeedEndpoint.imageComments(imageId: imageId).url(baseURL: baseURL)
+
+		return { [httpClient] in
+			httpClient
+				.getPublisher(url: url)
+				.tryMap(ImageCommentsMapper.map)
+				.eraseToAnyPublisher()
+		}
 	}
 
 	private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<[FeedImage], Error> {

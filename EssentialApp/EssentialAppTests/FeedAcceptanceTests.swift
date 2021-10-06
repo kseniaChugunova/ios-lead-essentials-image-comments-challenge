@@ -51,6 +51,17 @@ class FeedAcceptanceTests: XCTestCase {
 		XCTAssertNotNil(store.feedCache, "Expected to keep non-expired cache")
 	}
 
+	func test_onTapOnFeedItem_displaysListOfCommentsWhenCustomerHasConnectivity() {
+		let feed = launch(httpClient: .online(response), store: .empty)
+
+		feed.simulateTapOnFeedImage(at: 0)
+
+		let nav = feed.navigationController
+		let comments = nav?.topViewController as! ListViewController
+
+		XCTAssertEqual(comments.numberOfRenderedCellViews(), 2)
+	}
+
 	// MARK: - Helpers
 
 	private func launch(
@@ -77,6 +88,9 @@ class FeedAcceptanceTests: XCTestCase {
 
 	private func makeData(for url: URL) -> Data {
 		switch url.path {
+		case "/essential-feed/v1/image/11E123D5-1272-4F17-9B91-F3D0FFEC895A/comments":
+			return makeComments()
+            
 		case "/image-1", "/image-2":
 			return makeImageData()
 
@@ -86,6 +100,30 @@ class FeedAcceptanceTests: XCTestCase {
 		default:
 			return Data()
 		}
+	}
+
+	private func makeComments() -> Data {
+		let comm1 = makeComment(uuid: UUID().uuidString,
+		                        message: "a message",
+		                        createdAt: Date(),
+		                        username: "a username")
+		let comment1 = makeComment(uuid: UUID().uuidString,
+		                           message: "another message",
+		                           createdAt: Date(),
+		                           username: "a long username")
+
+		return try! JSONSerialization.data(withJSONObject: ["items": [comment1, comm1]])
+	}
+
+	private func makeComment(uuid: String, message: String, createdAt: Date, username: String) -> [String: Any] {
+		let dateFormatter = ISO8601DateFormatter()
+		let stringDate = dateFormatter.string(from: createdAt)
+		return [
+			"id": uuid,
+			"message": message,
+			"created_at": stringDate,
+			"author": ["username": username]
+		]
 	}
 
 	private func makeImageData() -> Data {
