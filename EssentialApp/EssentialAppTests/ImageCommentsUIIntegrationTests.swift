@@ -150,13 +150,6 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 	}
 
 	class LoaderSpy: ImageCommentsDataLoader {
-		private struct TaskSpy: ImageCommentsDataLoaderTask {
-			let cancelCallback: () -> Void
-			func cancel() {
-				cancelCallback()
-			}
-		}
-
 		var loadCommentsCallCount: Int {
 			return commentsRequests.count
 		}
@@ -167,10 +160,6 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 			let publisher = PassthroughSubject<[ImageComment], Error>()
 			commentsRequests.append(publisher)
 			return publisher.eraseToAnyPublisher()
-		}
-
-		func loadImageCommentData(from url: URL, completion: @escaping (ImageCommentsDataLoader.Result) -> Void) -> ImageCommentsDataLoaderTask {
-			return TaskSpy(cancelCallback: {})
 		}
 
 		func completeCommentsLoading(with comments: [ImageComment] = [], at index: Int = 0) {

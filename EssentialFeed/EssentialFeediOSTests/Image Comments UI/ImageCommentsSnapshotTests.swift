@@ -10,7 +10,14 @@ class ImageCommentsSnapshotTests: XCTestCase {
 	func test_commentsWithContent() {
 		let sut = makeSUT()
 
-		sut.display(commentsWithContent())
+		let commentViewModels = commentsWithContent()
+
+		let cellControllers: [CellController] = commentViewModels.map { model in
+			let cellController = ImageCommentCellController(viewModel: model)
+			return CellController(id: UUID(), cellController)
+		}
+
+		sut.display(cellControllers)
 
 		assert(snapshot: sut.snapshot(for: .iPhone8(style: .light)), named: "COMMENTS_WITH_CONTENT_light")
 		assert(snapshot: sut.snapshot(for: .iPhone8(style: .dark)), named: "COMMENTS_WITH_CONTENT_dark")
@@ -38,39 +45,18 @@ class ImageCommentsSnapshotTests: XCTestCase {
 		return controller
 	}
 
-	private func commentsWithContent() -> [ImageCommentStub] {
+	private func commentsWithContent() -> [ImageCommentViewModel] {
 		return [
-			ImageCommentStub(
-				description: "The gallery was seen in Wolfgang Becker's movie Goodbye, Lenin!",
-				username: "Joe",
-				date: Date().adding(days: -5)
+			ImageCommentViewModel(
+				text: "The gallery was seen in Wolfgang Becker's movie Goodbye, Lenin!",
+				dateText: "5 days ago",
+				username: "Joe"
 			),
-			ImageCommentStub(
-				description: "It was also featured in English indie/rock band Bloc Party's single Kreuzberg taken from the album A Weekend in the City.",
-				username: "Meghan",
-				date: Date().adding(days: -14)
+			ImageCommentViewModel(
+				text: "It was also featured in English indie/rock band Bloc Party's single Kreuzberg taken from the album A Weekend in the City.",
+				dateText: "2 weeks ago",
+				username: "Meghan"
 			)
 		]
-	}
-}
-
-private extension ListViewController {
-	func display(_ stubs: [ImageCommentStub]) {
-		let cells: [CellController] = stubs.map { stub in
-			let cellController = ImageCommentCellController(viewModel: stub.viewModel, selection: {})
-			stub.controller = cellController
-			return CellController(id: UUID(), cellController)
-		}
-
-		display(cells)
-	}
-}
-
-private class ImageCommentStub {
-	let viewModel: ImageCommentsCommentViewModel
-	weak var controller: ImageCommentCellController?
-
-	init(description: String?, username: String?, date: Date) {
-		self.viewModel = ImageCommentsCommentViewModel(text: description, username: username, date: date)
 	}
 }

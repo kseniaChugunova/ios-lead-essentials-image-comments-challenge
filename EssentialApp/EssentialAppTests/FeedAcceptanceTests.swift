@@ -90,7 +90,7 @@ class FeedAcceptanceTests: XCTestCase {
 		switch url.path {
 		case "/essential-feed/v1/image/11E123D5-1272-4F17-9B91-F3D0FFEC895A/comments":
 			return makeComments()
-            
+
 		case "/image-1", "/image-2":
 			return makeImageData()
 

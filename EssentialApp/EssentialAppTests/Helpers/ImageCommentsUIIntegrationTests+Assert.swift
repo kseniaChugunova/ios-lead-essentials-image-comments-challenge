@@ -23,7 +23,7 @@ extension ImageCommentsUIIntegrationTests {
 
 	func assertThat(_ sut: ListViewController, hasViewConfiguredFor comment: ImageComment, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
 		let view = sut.cellView(at: index)
-		let viewModel = ImageCommentsCommentViewModel(comment: comment)
+		let viewModel = ImageCommentsCommentPresenter.map(comment)
 
 		guard let cell = view as? ImageCommentCell else {
 			return XCTFail("Expected \(ImageCommentCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)

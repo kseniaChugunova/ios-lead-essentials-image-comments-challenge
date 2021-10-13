@@ -25,20 +25,19 @@ public final class ImageCommentsMapper {
 	}
 
 	public enum Error: Swift.Error {
-		case invalidResponse
 		case invalidData
 	}
 
 	public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [ImageComment] {
 		guard response.isOK else {
-			throw Error.invalidResponse
+			throw Error.invalidData
 		}
 
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601
 		decoder.keyDecodingStrategy = .convertFromSnakeCase
 		guard let root = try? decoder.decode(Root.self, from: data) else {
-			throw Error.invalidResponse
+			throw Error.invalidData
 		}
 
 		return root.images

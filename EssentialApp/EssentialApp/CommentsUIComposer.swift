@@ -11,6 +11,8 @@ import Combine
 public final class CommentsUIComposer {
 	private typealias CommentsPresentationAdapter = LoadResourcePresentationAdapter<[ImageComment], ImageCommentViewAdapter>
 
+	private init() {}
+
 	public static func imageCommentsComposedWith(
 		commentsLoader: @escaping () -> AnyPublisher<[ImageComment], Error>
 	) -> ListViewController {

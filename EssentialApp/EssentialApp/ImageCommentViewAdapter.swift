@@ -16,10 +16,7 @@ final class ImageCommentViewAdapter: ResourceView {
 	func display(_ viewModel: ImageCommentsViewModel) {
 		controller?.display(viewModel.comments.map { model in
 
-			let view = ImageCommentCellController(
-				viewModel: ImageCommentsCommentViewModel(comment: model),
-				selection: {}
-			)
+			let view = ImageCommentCellController(viewModel: model)
 
 			return CellController(id: model, view)
 		})

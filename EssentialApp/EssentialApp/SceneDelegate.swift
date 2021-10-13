@@ -56,13 +56,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	}
 
 	private func showComments(for image: FeedImage) {
-		let commentsLoader = makeRemoteCommentsLoader(imageId: image.id.uuidString)
+		let commentsLoader = makeRemoteCommentsLoader(imageId: image.id)
 		let commentsVC = CommentsUIComposer.imageCommentsComposedWith(commentsLoader: commentsLoader)
 		navigationController.pushViewController(commentsVC, animated: true)
 	}
 
-	private func makeRemoteCommentsLoader(imageId: String) -> () -> AnyPublisher<[ImageComment], Error> {
-		let url = FeedEndpoint.imageComments(imageId: imageId).url(baseURL: baseURL)
+	private func makeRemoteCommentsLoader(imageId: UUID) -> () -> AnyPublisher<[ImageComment], Error> {
+		let url = ImageCommentsEndpoint.imageComments(imageId: imageId.uuidString).url(baseURL: baseURL)
 
 		return { [httpClient] in
 			httpClient

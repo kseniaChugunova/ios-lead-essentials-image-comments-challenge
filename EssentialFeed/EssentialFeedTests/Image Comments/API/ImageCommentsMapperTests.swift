@@ -64,12 +64,12 @@ class ImageCommentsMapperTests: XCTestCase {
 		                        message: message,
 		                        createdAt: dateFormatter.date(from: stringDate)!,
 		                        authorUsername: username)
-		let json = [
+		let json: [String: Any] = [
 			"id": id.uuidString,
 			"message": message,
 			"created_at": stringDate,
 			"author": ["username": username]
-		].compactMapValues { $0 }
+		]
 
 		return (item, json)
 	}

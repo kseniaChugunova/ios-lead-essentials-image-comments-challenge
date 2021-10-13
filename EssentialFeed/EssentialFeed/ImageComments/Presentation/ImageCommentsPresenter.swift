@@ -14,6 +14,6 @@ public final class ImageCommentsPresenter {
 	}
 
 	public static func map(_ comments: [ImageComment]) -> ImageCommentsViewModel {
-		ImageCommentsViewModel(comments: comments)
+		ImageCommentsViewModel(comments: comments.map { ImageCommentsCommentPresenter.map($0) })
 	}
 }

@@ -5,7 +5,13 @@
 import Foundation
 
 public final class ImageCommentsCommentPresenter {
-	public static func map(_ comment: ImageComment) -> ImageCommentsCommentViewModel {
-		ImageCommentsCommentViewModel(comment: comment)
+	public static func map(_ comment: ImageComment) -> ImageCommentViewModel {
+		let text = comment.message
+		let username = comment.author.username
+
+		let dateFormatter = RelativeDateTimeFormatter()
+		let dateText = dateFormatter.localizedString(for: comment.createdAt, relativeTo: Date())
+
+		return ImageCommentViewModel(text: text, dateText: dateText, username: username)
 	}
 }

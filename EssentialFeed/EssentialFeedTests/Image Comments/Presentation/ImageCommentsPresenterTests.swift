@@ -13,9 +13,9 @@ class ImageCommentsPresenterTests: XCTestCase {
 	func test_map_createsViewModel() {
 		let comments = uniqueImageComments()
 
-		let viewModel = ImageCommentsPresenter.map(comments)
+		let viewModel = ImageCommentsPresenter.map(comments.0)
 
-		XCTAssertEqual(viewModel.comments, comments)
+		XCTAssertEqual(viewModel.comments, comments.1)
 	}
 
 	// MARK: - Helpers
@@ -35,7 +35,12 @@ func uniqueImageComment() -> ImageComment {
 	return ImageComment(id: UUID(), message: "a message", createdAt: Date().adding(days: -5), authorUsername: "a username")
 }
 
-func uniqueImageComments() -> [ImageComment] {
-	let models = [uniqueImageComment(), uniqueImageComment()]
-	return models
+func uniqueImageComments() -> ([ImageComment], [ImageCommentViewModel]) {
+	let comments = [uniqueImageComment(), uniqueImageComment()]
+	let dateFormatter = RelativeDateTimeFormatter()
+
+	let models = comments.map { ImageCommentViewModel(text: $0.message,
+	                                                  dateText: dateFormatter.localizedString(for: $0.createdAt, relativeTo: Date()),
+	                                                  username: $0.author.username) }
+	return (comments, models)
 }
