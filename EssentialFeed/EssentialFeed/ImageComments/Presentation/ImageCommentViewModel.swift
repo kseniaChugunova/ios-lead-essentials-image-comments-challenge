@@ -5,6 +5,7 @@
 import Foundation
 
 public struct ImageCommentViewModel: Hashable {
+	public let id: String
 	public let text: String
 	public let dateText: String
 	public let username: String

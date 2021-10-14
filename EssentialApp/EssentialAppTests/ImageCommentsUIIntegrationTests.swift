@@ -32,10 +32,10 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 	}
 
 	func test_loadCommentsCompletion_rendersSuccessfullyLoadedComments() {
-		let comment0 = makeComment(message: "a message", createdAt: Date(), authorUsername: "a username")
-		let comment1 = makeComment(message: "another message", createdAt: Date(), authorUsername: "a long username")
-		let comment2 = makeComment(message: "yet another long message", createdAt: Date(), authorUsername: "another username")
-		let comment3 = makeComment(message: "a long message", createdAt: Date(), authorUsername: "yet another long username")
+		let comment0 = makeComment(message: "a message", authorUsername: "a username")
+		let comment1 = makeComment(message: "another message", authorUsername: "a long username")
+		let comment2 = makeComment(message: "yet another long message", authorUsername: "another username")
+		let comment3 = makeComment(message: "a long message", authorUsername: "yet another long username")
 
 		let (sut, loader) = makeSUT()
 
@@ -63,8 +63,8 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 	}
 
 	func test_loadCommentsCompletion_rendersSuccessfullyLoadedEmptyScreenAfterNonEmptyScreen() {
-		let comment0 = makeComment(message: "a message", createdAt: Date(), authorUsername: "a username")
-		let comment1 = makeComment(message: "another message", createdAt: Date(), authorUsername: "a long username")
+		let comment0 = makeComment()
+		let comment1 = makeComment()
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
@@ -77,7 +77,7 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 	}
 
 	func test_loadCommentsCompletion_doesNotAlterCurrentRenderingStateOnError() {
-		let comment0 = makeComment(message: "a message", createdAt: Date(), authorUsername: "a username")
+		let comment0 = makeComment()
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
@@ -145,11 +145,11 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		return (sut, loader)
 	}
 
-	private func makeComment(message: String, createdAt: Date, authorUsername: String) -> ImageComment {
-		return ImageComment(id: UUID(), message: message, createdAt: createdAt, authorUsername: authorUsername)
+	private func makeComment(message: String = "message", authorUsername: String = "authorUsername") -> ImageComment {
+		return ImageComment(id: UUID(), message: message, createdAt: Date(), authorUsername: authorUsername)
 	}
 
-	class LoaderSpy: ImageCommentsDataLoader {
+	class LoaderSpy {
 		var loadCommentsCallCount: Int {
 			return commentsRequests.count
 		}
@@ -170,19 +170,5 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 			let error = NSError(domain: "an error", code: 0)
 			commentsRequests[index].send(completion: .failure(error))
 		}
-	}
-}
-
-extension ImageCommentCell {
-	var messageText: String? {
-		descriptionLabel.text
-	}
-
-	var usernameText: String? {
-		return usernameLabel.text
-	}
-
-	var dateText: String? {
-		return dateLabel.text
 	}
 }

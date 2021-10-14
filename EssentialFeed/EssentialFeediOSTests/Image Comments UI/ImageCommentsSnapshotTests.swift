@@ -48,11 +48,13 @@ class ImageCommentsSnapshotTests: XCTestCase {
 	private func commentsWithContent() -> [ImageCommentViewModel] {
 		return [
 			ImageCommentViewModel(
+				id: "7019D8A7-0B35-4057-B7F9-8C5471961ED0",
 				text: "The gallery was seen in Wolfgang Becker's movie Goodbye, Lenin!",
 				dateText: "5 days ago",
 				username: "Joe"
 			),
 			ImageCommentViewModel(
+				id: "1F4A3B22-9E6E-46FC-BB6C-48B33269951B",
 				text: "It was also featured in English indie/rock band Bloc Party's single Kreuzberg taken from the album A Weekend in the City.",
 				dateText: "2 weeks ago",
 				username: "Meghan"

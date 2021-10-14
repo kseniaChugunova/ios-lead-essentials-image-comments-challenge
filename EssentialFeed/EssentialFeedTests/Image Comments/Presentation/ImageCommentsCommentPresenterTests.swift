@@ -14,6 +14,6 @@ class ImageCommentsCommentPresenterTests: XCTestCase {
 
 		XCTAssertEqual(viewModel.text, comment.message)
 		XCTAssertEqual(viewModel.dateText, "5 days ago")
-		XCTAssertEqual(viewModel.username, comment.author.username)
+		XCTAssertEqual(viewModel.username, comment.authorUsername)
 	}
 }

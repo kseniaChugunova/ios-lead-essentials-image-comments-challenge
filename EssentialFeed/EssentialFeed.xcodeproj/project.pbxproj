@@ -123,7 +123,6 @@
 		FAB8881226F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png in Resources */ = {isa = PBXBuildFile; fileRef = FAB8880F26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png */; };
 		FAF7854E2716EABB001DA12C /* ImageCommentsEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF7854D2716EABB001DA12C /* ImageCommentsEndpoint.swift */; };
 		FAF7854F2716ED8B001DA12C /* SharedTestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 081C0DB222491EEF00AC754E /* SharedTestHelpers.swift */; };
-		FAF989362700572300F8D80B /* ImageCommentsDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAF989352700572300F8D80B /* ImageCommentsDataLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -270,7 +269,6 @@
 		FAB8880E26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = COMMENTS_WITH_CONTENT_light.png; sourceTree = "<group>"; };
 		FAB8880F26F1C44900A4855E /* COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = COMMENTS_WITH_CONTENT_light_extraExtraExtraLarge.png; sourceTree = "<group>"; };
 		FAF7854D2716EABB001DA12C /* ImageCommentsEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsEndpoint.swift; sourceTree = "<group>"; };
-		FAF989352700572300F8D80B /* ImageCommentsDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCommentsDataLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -784,7 +782,6 @@
 			children = (
 				FA0DC41526E9D08B00677C6D /* ImageCommentsMapper.swift */,
 				FAF7854D2716EABB001DA12C /* ImageCommentsEndpoint.swift */,
-				FAF989352700572300F8D80B /* ImageCommentsDataLoader.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -1136,7 +1133,6 @@
 				087148B6232BEAAF00D6BE1A /* FeedPresenter.swift in Sources */,
 				0844769121FCBE7D00439BE9 /* URLSessionHTTPClient.swift in Sources */,
 				08EF9D27250BBC1B004539C2 /* ResourceLoadingView.swift in Sources */,
-				FAF989362700572300F8D80B /* ImageCommentsDataLoader.swift in Sources */,
 				08897BEF233A1C8E0029F5E4 /* HTTPURLResponse+StatusCode.swift in Sources */,
 				08285AFD228C1843000A8987 /* ManagedCache.swift in Sources */,
 				08285AF1228BF91E000A8987 /* CoreDataFeedStore.swift in Sources */,

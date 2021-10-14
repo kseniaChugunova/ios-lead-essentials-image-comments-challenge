@@ -51,7 +51,7 @@ class FeedAcceptanceTests: XCTestCase {
 		XCTAssertNotNil(store.feedCache, "Expected to keep non-expired cache")
 	}
 
-	func test_onTapOnFeedItem_displaysListOfCommentsWhenCustomerHasConnectivity() {
+	func test_onSelectionFeedItem_displaysListOfCommentsWhenCustomerHasConnectivity() {
 		let feed = launch(httpClient: .online(response), store: .empty)
 
 		feed.simulateTapOnFeedImage(at: 0)
@@ -103,25 +103,23 @@ class FeedAcceptanceTests: XCTestCase {
 	}
 
 	private func makeComments() -> Data {
-		let comm1 = makeComment(uuid: UUID().uuidString,
-		                        message: "a message",
-		                        createdAt: Date(),
-		                        username: "a username")
-		let comment1 = makeComment(uuid: UUID().uuidString,
-		                           message: "another message",
-		                           createdAt: Date(),
-		                           username: "a long username")
+		let dateFormatter = ISO8601DateFormatter()
+		let stringDate = dateFormatter.string(from: Date())
 
-		return try! JSONSerialization.data(withJSONObject: ["items": [comment1, comm1]])
+		let comment1 = makeComment(uuid: "7019D8A7-0B35-4057-B7F9-8C5471961ED0", createdAt: stringDate)
+		let comment2 = makeComment(uuid: "1F4A3B22-9E6E-46FC-BB6C-48B33269951B", createdAt: stringDate)
+
+		return try! JSONSerialization.data(withJSONObject: ["items": [comment1, comment2]])
 	}
 
-	private func makeComment(uuid: String, message: String, createdAt: Date, username: String) -> [String: Any] {
-		let dateFormatter = ISO8601DateFormatter()
-		let stringDate = dateFormatter.string(from: createdAt)
+	private func makeComment(uuid: String,
+	                         message: String = "a message",
+	                         createdAt: String,
+	                         username: String = "a username") -> [String: Any] {
 		return [
 			"id": uuid,
 			"message": message,
-			"created_at": stringDate,
+			"created_at": createdAt,
 			"author": ["username": username]
 		]
 	}

@@ -37,10 +37,8 @@ func uniqueImageComment() -> ImageComment {
 
 func uniqueImageComments() -> ([ImageComment], [ImageCommentViewModel]) {
 	let comments = [uniqueImageComment(), uniqueImageComment()]
-	let dateFormatter = RelativeDateTimeFormatter()
 
-	let models = comments.map { ImageCommentViewModel(text: $0.message,
-	                                                  dateText: dateFormatter.localizedString(for: $0.createdAt, relativeTo: Date()),
-	                                                  username: $0.author.username) }
+	let models = comments.map { ImageCommentsCommentPresenter.map($0) }
+
 	return (comments, models)
 }

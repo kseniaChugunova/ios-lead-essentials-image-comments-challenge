@@ -11,7 +11,7 @@ public final class ImageCommentsMapper {
 		private struct RemoteImageCommentItem: Decodable {
 			let id: UUID
 			let message: String
-			let createdAt: Date
+			let created_at: Date
 			let author: Author
 
 			struct Author: Decodable {
@@ -20,7 +20,7 @@ public final class ImageCommentsMapper {
 		}
 
 		var images: [ImageComment] {
-			items.map { ImageComment(id: $0.id, message: $0.message, createdAt: $0.createdAt, authorUsername: $0.author.username) }
+			items.map { ImageComment(id: $0.id, message: $0.message, createdAt: $0.created_at, authorUsername: $0.author.username) }
 		}
 	}
 
@@ -29,17 +29,16 @@ public final class ImageCommentsMapper {
 	}
 
 	public static func map(_ data: Data, from response: HTTPURLResponse) throws -> [ImageComment] {
-		guard response.isOK else {
-			throw Error.invalidData
-		}
-
 		let decoder = JSONDecoder()
 		decoder.dateDecodingStrategy = .iso8601
-		decoder.keyDecodingStrategy = .convertFromSnakeCase
-		guard let root = try? decoder.decode(Root.self, from: data) else {
+		guard let root = try? decoder.decode(Root.self, from: data), isOk(response) else {
 			throw Error.invalidData
 		}
 
 		return root.images
+	}
+
+	private static func isOk(_ response: HTTPURLResponse) -> Bool {
+		(200 ... 299).contains(response.statusCode)
 	}
 }
