@@ -6,7 +6,7 @@ import XCTest
 import EssentialFeed
 import EssentialFeediOS
 
-extension ImageCommentsUIIntegrationTests {
+class ImageCommentsUIIntegrationTestsHelpers {
 	func assertThat(_ sut: ListViewController, isRendering comments: [ImageComment], file: StaticString = #filePath, line: UInt = #line) {
 		sut.view.enforceLayoutCycle()
 

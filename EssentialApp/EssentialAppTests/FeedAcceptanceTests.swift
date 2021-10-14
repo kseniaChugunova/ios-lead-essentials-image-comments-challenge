@@ -56,10 +56,14 @@ class FeedAcceptanceTests: XCTestCase {
 
 		feed.simulateTapOnFeedImage(at: 0)
 
-		let nav = feed.navigationController
-		let comments = nav?.topViewController as! ListViewController
+		RunLoop.current.run(until: Date())
 
-		XCTAssertEqual(comments.numberOfRenderedCellViews(), 2)
+		let commentsVC = feed.currentViewController()
+
+		XCTAssertEqual(commentsVC.numberOfRenderedCellViews(), 2)
+
+		let helper = ImageCommentsUIIntegrationTestsHelpers()
+		helper.assertThat(commentsVC, isRendering: commentEntities)
 	}
 
 	// MARK: - Helpers
@@ -88,8 +92,8 @@ class FeedAcceptanceTests: XCTestCase {
 
 	private func makeData(for url: URL) -> Data {
 		switch url.path {
-		case "/essential-feed/v1/image/11E123D5-1272-4F17-9B91-F3D0FFEC895A/comments":
-			return makeComments()
+		case "/essential-feed/v1/image/2AB2AE66-A4B7-4A16-B374-51BBAC8DB086/comments":
+			return makeCommentsResponse()
 
 		case "/image-1", "/image-2":
 			return makeImageData()
@@ -102,9 +106,27 @@ class FeedAcceptanceTests: XCTestCase {
 		}
 	}
 
-	private func makeComments() -> Data {
+	private lazy var date = Date()
+
+	private lazy var commentEntities: [ImageComment] = {
+		let message = "a message"
+		let username = "a username"
+
+		return [
+			ImageComment(id: UUID(uuidString: "7019D8A7-0B35-4057-B7F9-8C5471961ED0")!,
+			             message: message,
+			             createdAt: date,
+			             authorUsername: username),
+			ImageComment(id: UUID(uuidString: "1F4A3B22-9E6E-46FC-BB6C-48B33269951B")!,
+			             message: message,
+			             createdAt: date,
+			             authorUsername: username)
+		]
+	}()
+
+	private func makeCommentsResponse() -> Data {
 		let dateFormatter = ISO8601DateFormatter()
-		let stringDate = dateFormatter.string(from: Date())
+		let stringDate = dateFormatter.string(from: date)
 
 		let comment1 = makeComment(uuid: "7019D8A7-0B35-4057-B7F9-8C5471961ED0", createdAt: stringDate)
 		let comment2 = makeComment(uuid: "1F4A3B22-9E6E-46FC-BB6C-48B33269951B", createdAt: stringDate)

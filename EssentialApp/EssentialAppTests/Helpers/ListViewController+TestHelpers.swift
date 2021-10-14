@@ -91,5 +91,10 @@ extension ListViewController {
 		cell(row: row, section: cellsSection)
 	}
 
+	func currentViewController() -> ListViewController {
+		let nav = navigationController
+		return nav?.topViewController as! ListViewController
+	}
+
 	private var cellsSection: Int { 0 }
 }

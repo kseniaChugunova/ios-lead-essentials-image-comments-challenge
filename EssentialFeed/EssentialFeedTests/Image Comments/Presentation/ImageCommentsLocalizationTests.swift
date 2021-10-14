@@ -3,8 +3,7 @@
 //
 
 import XCTest
-
-@testable import EssentialFeed
+import EssentialFeed
 
 class ImageCommentsLocalizationTests: XCTestCase {
 	func test_localizedStrings_haveKeysAndValuesForAllSupportedLocalizations() {

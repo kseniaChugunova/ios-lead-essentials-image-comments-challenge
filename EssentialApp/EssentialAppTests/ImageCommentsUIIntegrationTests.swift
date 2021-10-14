@@ -40,13 +40,15 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
-		assertThat(sut, isRendering: [])
+		let helper = ImageCommentsUIIntegrationTestsHelpers()
+
+		helper.assertThat(sut, isRendering: [])
 		loader.completeCommentsLoading(with: [comment0], at: 0)
-		assertThat(sut, isRendering: [comment0])
+		helper.assertThat(sut, isRendering: [comment0])
 
 		sut.simulateUserInitiatedReload()
 		loader.completeCommentsLoading(with: [comment0, comment1, comment2, comment3], at: 1)
-		assertThat(sut, isRendering: [comment0, comment1, comment2, comment3])
+		helper.assertThat(sut, isRendering: [comment0, comment1, comment2, comment3])
 	}
 
 	func test_loadCommentsCompletion_rendersErrorMessageOnErrorUntilNextReload() {
@@ -68,12 +70,13 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
+		let helper = ImageCommentsUIIntegrationTestsHelpers()
 		loader.completeCommentsLoading(with: [comment0, comment1], at: 0)
-		assertThat(sut, isRendering: [comment0, comment1])
+		helper.assertThat(sut, isRendering: [comment0, comment1])
 
 		sut.simulateUserInitiatedReload()
 		loader.completeCommentsLoading(with: [], at: 1)
-		assertThat(sut, isRendering: [])
+		helper.assertThat(sut, isRendering: [])
 	}
 
 	func test_loadCommentsCompletion_doesNotAlterCurrentRenderingStateOnError() {
@@ -81,12 +84,13 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 		let (sut, loader) = makeSUT()
 
 		sut.loadViewIfNeeded()
+		let helper = ImageCommentsUIIntegrationTestsHelpers()
 		loader.completeCommentsLoading(with: [comment0], at: 0)
-		assertThat(sut, isRendering: [comment0])
+		helper.assertThat(sut, isRendering: [comment0])
 
 		sut.simulateUserInitiatedReload()
 		loader.completeCommentsLoadingWithError(at: 1)
-		assertThat(sut, isRendering: [comment0])
+		helper.assertThat(sut, isRendering: [comment0])
 	}
 
 	func test_tapOnErrorView_hidesErrorMessage() {
@@ -128,6 +132,28 @@ class ImageCommentsUIIntegrationTests: XCTestCase {
 			exp.fulfill()
 		}
 		wait(for: [exp], timeout: 1.0)
+	}
+
+	func test_deinit_cancelsRunningRequests() {
+		var cancelCallCount = 0
+		var sut: ListViewController?
+
+		autoreleasepool {
+			sut = CommentsUIComposer.imageCommentsComposedWith(commentsLoader: {
+				PassthroughSubject<[ImageComment], Error>()
+					.handleEvents(receiveCancel: {
+						cancelCallCount += 1
+					}).eraseToAnyPublisher()
+			})
+
+			sut?.loadViewIfNeeded()
+		}
+
+		XCTAssertEqual(cancelCallCount, 0)
+
+		sut = nil
+
+		XCTAssertEqual(cancelCallCount, 1)
 	}
 
 	// MARK: - Helpers
