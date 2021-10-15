@@ -106,7 +106,7 @@ class FeedAcceptanceTests: XCTestCase {
 		}
 	}
 
-	private lazy var date = Date()
+	private lazy var date: (date: Date, iso8601String: String) = (Date(timeIntervalSince1970: 1598627222), "2020-08-28T15:07:02+00:00")
 
 	private lazy var commentEntities: [ImageComment] = {
 		let message = "a message"
@@ -115,21 +115,18 @@ class FeedAcceptanceTests: XCTestCase {
 		return [
 			ImageComment(id: UUID(uuidString: "7019D8A7-0B35-4057-B7F9-8C5471961ED0")!,
 			             message: message,
-			             createdAt: date,
+			             createdAt: date.date,
 			             authorUsername: username),
 			ImageComment(id: UUID(uuidString: "1F4A3B22-9E6E-46FC-BB6C-48B33269951B")!,
 			             message: message,
-			             createdAt: date,
+			             createdAt: date.date,
 			             authorUsername: username)
 		]
 	}()
 
 	private func makeCommentsResponse() -> Data {
-		let dateFormatter = ISO8601DateFormatter()
-		let stringDate = dateFormatter.string(from: date)
-
-		let comment1 = makeComment(uuid: "7019D8A7-0B35-4057-B7F9-8C5471961ED0", createdAt: stringDate)
-		let comment2 = makeComment(uuid: "1F4A3B22-9E6E-46FC-BB6C-48B33269951B", createdAt: stringDate)
+		let comment1 = makeComment(uuid: "7019D8A7-0B35-4057-B7F9-8C5471961ED0", createdAt: date.iso8601String)
+		let comment2 = makeComment(uuid: "1F4A3B22-9E6E-46FC-BB6C-48B33269951B", createdAt: date.iso8601String)
 
 		return try! JSONSerialization.data(withJSONObject: ["items": [comment1, comment2]])
 	}
