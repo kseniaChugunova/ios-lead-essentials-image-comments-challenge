@@ -45,7 +45,7 @@ extension ListViewController {
 extension ListViewController {
 	@discardableResult
 	func simulateFeedImageViewVisible(at index: Int) -> FeedImageCell? {
-		return cellView(at: index) as? FeedImageCell
+		return feedImageView(at: index) as? FeedImageCell
 	}
 
 	@discardableResult
@@ -53,7 +53,7 @@ extension ListViewController {
 		let view = simulateFeedImageViewVisible(at: row)
 
 		let delegate = tableView.delegate
-		let index = IndexPath(row: row, section: cellsSection)
+		let index = IndexPath(row: row, section: feedImagesSection)
 		delegate?.tableView?(tableView, didEndDisplaying: view!, forRowAt: index)
 
 		return view
@@ -61,13 +61,13 @@ extension ListViewController {
 
 	func simulateTapOnFeedImage(at row: Int) {
 		let delegate = tableView.delegate
-		let index = IndexPath(row: row, section: cellsSection)
+		let index = IndexPath(row: row, section: feedImagesSection)
 		delegate?.tableView?(tableView, didSelectRowAt: index)
 	}
 
 	func simulateFeedImageViewNearVisible(at row: Int) {
 		let ds = tableView.prefetchDataSource
-		let index = IndexPath(row: row, section: cellsSection)
+		let index = IndexPath(row: row, section: feedImagesSection)
 		ds?.tableView(tableView, prefetchRowsAt: [index])
 	}
 
@@ -75,7 +75,7 @@ extension ListViewController {
 		simulateFeedImageViewNearVisible(at: row)
 
 		let ds = tableView.prefetchDataSource
-		let index = IndexPath(row: row, section: cellsSection)
+		let index = IndexPath(row: row, section: feedImagesSection)
 		ds?.tableView?(tableView, cancelPrefetchingForRowsAt: [index])
 	}
 
@@ -83,12 +83,12 @@ extension ListViewController {
 		return simulateFeedImageViewVisible(at: index)?.renderedImage
 	}
 
-	func numberOfRenderedCellViews() -> Int {
-		numberOfRows(in: cellsSection)
+	func numberOfRenderedFeedImageViews() -> Int {
+		numberOfRows(in: feedImagesSection)
 	}
 
-	func cellView(at row: Int) -> UITableViewCell? {
-		cell(row: row, section: cellsSection)
+	func feedImageView(at row: Int) -> UITableViewCell? {
+		cell(row: row, section: feedImagesSection)
 	}
 
 	func currentViewController() -> ListViewController {
@@ -96,5 +96,29 @@ extension ListViewController {
 		return nav?.topViewController as! ListViewController
 	}
 
-	private var cellsSection: Int { 0 }
+	private var feedImagesSection: Int { 0 }
+}
+
+extension ListViewController {
+	func numberOfRenderedComments() -> Int {
+		numberOfRows(in: commentsSection)
+	}
+
+	func commentMessage(at row: Int) -> String? {
+		commentView(at: row)?.messageText
+	}
+
+	func commentDate(at row: Int) -> String? {
+		commentView(at: row)?.dateText
+	}
+
+	func commentUsername(at row: Int) -> String? {
+		commentView(at: row)?.usernameText
+	}
+
+	func commentView(at row: Int) -> ImageCommentCell? {
+		cell(row: row, section: commentsSection) as? ImageCommentCell
+	}
+
+	private var commentsSection: Int { 0 }
 }

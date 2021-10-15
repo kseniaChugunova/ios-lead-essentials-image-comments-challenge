@@ -10,8 +10,8 @@ class ImageCommentsUIIntegrationTestsHelpers {
 	func assertThat(_ sut: ListViewController, isRendering comments: [ImageComment], file: StaticString = #filePath, line: UInt = #line) {
 		sut.view.enforceLayoutCycle()
 
-		guard sut.numberOfRenderedCellViews() == comments.count else {
-			return XCTFail("Expected \(comments.count) comments, got \(sut.numberOfRenderedCellViews()) instead.", file: file, line: line)
+		guard sut.numberOfRenderedComments() == comments.count else {
+			return XCTFail("Expected \(comments.count) comments, got \(sut.numberOfRenderedComments()) instead.", file: file, line: line)
 		}
 
 		comments.enumerated().forEach { index, image in
@@ -22,10 +22,10 @@ class ImageCommentsUIIntegrationTestsHelpers {
 	}
 
 	func assertThat(_ sut: ListViewController, hasViewConfiguredFor comment: ImageComment, at index: Int, file: StaticString = #filePath, line: UInt = #line) {
-		let view = sut.cellView(at: index)
+		let view = sut.commentView(at: index)
 		let viewModel = ImageCommentsCommentPresenter.map(comment)
 
-		guard let cell = view as? ImageCommentCell else {
+		guard let cell = view else {
 			return XCTFail("Expected \(ImageCommentCell.self) instance, got \(String(describing: view)) instead", file: file, line: line)
 		}
 
