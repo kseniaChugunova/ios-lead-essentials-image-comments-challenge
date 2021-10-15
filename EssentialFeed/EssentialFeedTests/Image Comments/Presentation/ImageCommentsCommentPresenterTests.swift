@@ -8,7 +8,7 @@ import XCTest
 
 class ImageCommentsCommentPresenterTests: XCTestCase {
 	func test_map_createsViewModel() {
-		let comment = uniqueImageComment()
+		let comment = uniqueImageComment(id: UUID())
 
 		let viewModel = ImageCommentsCommentPresenter.map(comment)
 

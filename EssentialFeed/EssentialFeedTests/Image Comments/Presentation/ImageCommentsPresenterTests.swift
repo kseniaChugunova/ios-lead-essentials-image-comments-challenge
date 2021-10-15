@@ -31,14 +31,30 @@ class ImageCommentsPresenterTests: XCTestCase {
 	}
 }
 
-func uniqueImageComment() -> ImageComment {
-	return ImageComment(id: UUID(), message: "a message", createdAt: Date().adding(days: -5), authorUsername: "a username")
+func uniqueImageComment(id: UUID) -> ImageComment {
+	return ImageComment(id: id, message: "a message", createdAt: Date().adding(days: -5), authorUsername: "a username")
 }
 
 func uniqueImageComments() -> ([ImageComment], [ImageCommentViewModel]) {
-	let comments = [uniqueImageComment(), uniqueImageComment()]
+	let id1 = UUID(uuidString: "7019D8A7-0B35-4057-B7F9-8C5471961ED0")!
+	let id2 = UUID(uuidString: "1F4A3B22-9E6E-46FC-BB6C-48B33269951B")!
 
-	let models = comments.map { ImageCommentsCommentPresenter.map($0) }
+	let comments = [uniqueImageComment(id: id1), uniqueImageComment(id: id2)]
+
+	let models = [
+		ImageCommentViewModel(
+			id: id1.uuidString,
+			text: "a message",
+			dateText: "5 days ago",
+			username: "a username"
+		),
+		ImageCommentViewModel(
+			id: id2.uuidString,
+			text: "a message",
+			dateText: "5 days ago",
+			username: "a username"
+		)
+	]
 
 	return (comments, models)
 }
